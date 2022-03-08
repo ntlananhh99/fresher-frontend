@@ -10,6 +10,7 @@ import {
   ShieldCheckIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
+import TodoForm from './components/TodoForm';
 
 const solutions = [
   {
@@ -48,12 +49,13 @@ const solutions = [
 function App() {
   return (
     <div class="container mx-auto">
-      <Header />
+      {/* <Header />
       <Body />
       {solutions.map((item) => (
         <TodoItem key={item.name} dataItem={item} />
       ))}
-      <Form />
+      <Form /> */}
+      <TodoForm />
     </div>
   );
 }
