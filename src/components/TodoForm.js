@@ -5,20 +5,35 @@ import DataTable from './DataTable';
 
 const TodoForm = () => {
     const [list, setList] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [edit, setEdit] = useState(null);
 
     useEffect(() => {
         const fetchAPI = async () => {
-            await axios.get("http://localhost:4000/todo/get")
+            await axios.get("http://localhost:3000/todo/get")
                 .then(res => setList(res.data))
                 .catch(err => console.log(err.statusText));
         }
         fetchAPI();
     }, [])
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <AddForm list={list} setList={setList} />
-            <DataTable list={list} setList={setList} />
-        </div>
+        <>
+            <AddForm
+                list={list}
+                setList={setList}
+                open={open}
+                setOpen={setOpen}
+                edit={edit}
+                setEdit={setEdit}
+            />
+            <DataTable
+                setOpen={setOpen}
+                list={list}
+                setList={setList}
+                setEdit={setEdit}
+            />
+        </>
     );
 };
 
