@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FormUpdate from './FormUpdate';
-const baseURL = "http://localhost:3000/todo/get";
+const domain = "http://localhost:3000/todo"
 export default function CallAPI() {
     const [isShowUpdate, setIsShowUpdate] = useState(false);
-    const [userId, setUserId] = useState('');
+    const [userId, setUserId] = useState(0);
     const [post, setPost] = useState([]);
     useEffect(() => {
-        axios.get(baseURL).then((response) => {
+        axios.get(domain + "/get").then((response) => {
             setPost(response.data);
+        })
+        .catch(err=>{
+            console.log(err);
         });
     });
 
-    if (!post) return null;
     //   ---------------------------------------------
     const onHandDel = async (id) => {
-        axios.delete(`http://localhost:3000/todo/${id}/delete/`)
+        axios.delete(domain + `/${id}/delete/`)
             .then(res => {
                 console.log(res);
             })
@@ -25,12 +27,15 @@ export default function CallAPI() {
     }
 
     const onUpdate = (id) => {
-        setIsShowUpdate(true);
         setUserId(id);
+        if(id === userId){
+            setIsShowUpdate(!isShowUpdate);
+        }else setIsShowUpdate(true);
     }
+    if (!post) return null;
     return (
         <div>
-            <table class="table-fixed mx-auto" style={{ "width": "950px" }}>
+            <table class="table-fixed mx-auto w-full">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -44,9 +49,9 @@ export default function CallAPI() {
                 </thead>
 
                 <tbody>
-                    {post.map(item => (
+                    {post.map((item, key )=> (
                         <tr key={item.id}>
-                            <td className='text-center'>{item.id}</td>
+                            <td className='text-center'>{key+1}</td>
                             <td className='text-center'>{item.firstName} {item.lastName}</td>
                             <td className='text-center'>{item.email}</td>
                             <td className='text-center'>{item.phone}</td>
