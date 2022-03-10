@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+th{
+    color: rgb(75, 73, 73);
+    text-align: left;
+    padding: 10px 20px;
+}
+td{
+    color: rgb(109, 108, 108);
+    font-weight: light;
+}
