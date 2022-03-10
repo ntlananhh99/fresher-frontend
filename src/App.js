@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Body from './components/Body';
 import TodoItem from './components/TodoItem';
 import Form from './components/Form';
+import Users from './components/Users';
 import {
   ChartBarIcon,
   CursorClickIcon,
@@ -10,7 +11,6 @@ import {
   ShieldCheckIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
-
 const solutions = [
   {
     name: 'Analytics',
@@ -47,13 +47,9 @@ const solutions = [
 ];
 function App() {
   return (
-    <div class="container mx-auto">
+    <div className="container mx-auto">
       <Header />
-      <Body />
-      {solutions.map((item) => (
-        <TodoItem key={item.name} dataItem={item} />
-      ))}
-      <Form />
+      <Users></Users>
     </div>
   );
 }
