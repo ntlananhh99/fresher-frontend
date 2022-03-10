@@ -1,59 +1,56 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 import Header from './components/Header';
-import Body from './components/Body';
-import TodoItem from './components/TodoItem';
-import Form from './components/Form';
-import {
-  ChartBarIcon,
-  CursorClickIcon,
-  RefreshIcon,
-  ShieldCheckIcon,
-  ViewGridIcon,
-} from '@heroicons/react/outline';
+import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
+import UpdateTodo from './components/UpdateTodo';
 
-const solutions = [
-  {
-    name: 'Analytics',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '#',
-    icon: ChartBarIcon,
-  },
-  {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-    icon: CursorClickIcon,
-  },
-  {
-    name: 'Security',
-    description: "Your customers' data will be safe and secure.",
-    href: '#',
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Automations',
-    description:
-      'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-    icon: RefreshIcon,
-  },
-];
 function App() {
+  const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    getTodoList();
+  }, []);
+
+  const getTodoList = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/todo/get`);
+      setTodoList(res.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const onDeleteTodo = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3000/todo/${id}/delete`);
+
+      const todoFilter = todoList.filter((todo) => todo.id !== id);
+      setTodoList(todoFilter);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
-    <div class="container mx-auto">
+    <div className="container">
       <Header />
-      <Body />
-      {solutions.map((item) => (
-        <TodoItem key={item.name} dataItem={item} />
-      ))}
-      <Form />
+      <Routes>
+        <Route
+          path="/"
+          element={<TodoList todoList={todoList} onDeleteTodo={onDeleteTodo} />}
+        />
+        <Route
+          path="/addTodo"
+          element={<AddTodo getTodoList={getTodoList} />}
+        />
+        <Route
+          path="/updateTodo/:id"
+          element={<UpdateTodo getTodoList={getTodoList} />}
+        />
+      </Routes>
     </div>
   );
 }
