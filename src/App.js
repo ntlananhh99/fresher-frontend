@@ -10,6 +10,8 @@ import {
   ShieldCheckIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
+import CallAPI from './components/CallAPI';
+import FormUpdate from './components/FormUpdate';
 
 const solutions = [
   {
@@ -54,8 +56,11 @@ function App() {
         <TodoItem key={item.name} dataItem={item} />
       ))}
       <Form />
+      <CallAPI/>
+     
     </div>
   );
 }
+
 
 export default App;
