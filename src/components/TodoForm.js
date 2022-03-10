@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../helper/axiosConfig';
 import React, { useEffect, useState } from 'react';
 import AddForm from './AddForm';
 import DataTable from './DataTable';
@@ -10,7 +10,7 @@ const TodoForm = () => {
 
     useEffect(() => {
         const fetchAPI = async () => {
-            await axios.get("http://localhost:3000/todo/get")
+            await axios.get("/todo/get")
                 .then(res => setList(res.data))
                 .catch(err => console.log(err.statusText));
         }

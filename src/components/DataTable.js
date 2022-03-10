@@ -1,21 +1,21 @@
-import axios from 'axios';
+import axios from "../helper/axiosConfig";
 import React, { useState } from 'react';
 
 const DataTable = ({ list, setList, setOpen, setEdit }) => {
 
     const handleDelete = async (e, id) => {
-        await axios.delete(`http://localhost:3000/todo/${id}/delete`)
+        await axios.delete(`/todo/${id}/delete`)
             .then(res => setList(list.filter(el => el.id !== id)))
             .catch(err => console.log(err.response));
     }
 
     const handleOpenEdit = async (e, el) => {
-        setEdit(el);
+        await setEdit(el);
         setOpen(true);
     }
 
     return (
-        <div className="flex justify-center min-h-screen bg-gray-100">
+        <div className="flex justify-center min-h-screen">
             <div style={{ alignSelf: "center" }} className="px-8 py-6 text-left mx-5 bg-white shadow-lg rounded-md">
                 <button onClick={() => setOpen(true)} className="px-6 py-2 mb-4 text-white bg-blue-600  rounded-full hover:bg-blue-900">Add</button>
                 <table className="table-auto">
@@ -30,10 +30,9 @@ const DataTable = ({ list, setList, setOpen, setEdit }) => {
                         </tr>
                     </thead>
                     <tbody>
-
                         {
                             list.length > 0 && list.map(el =>
-                                <tr key={el.id}>
+                                <tr key={el.id} className='py-5 pt-3 pb-3'>
                                     <td className='px-2'>{el.firstName + " " + el.lastName}</td>
                                     <td className='px-2'>{el.email}</td>
                                     <td className='px-2'>{el.phone}</td>

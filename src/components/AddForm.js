@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../helper/axiosConfig';
 import React, { useEffect, useState } from 'react';
 
 const AddForm = ({ list, setList, open, setOpen, edit, setEdit }) => {
@@ -30,7 +30,7 @@ const AddForm = ({ list, setList, open, setOpen, edit, setEdit }) => {
 
     const handleEdit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:3000/todo/${edit.id}/update`,
+        await axios.put(`/todo/${edit.id}/update`,
             { firstName, lastName, city, country, email, phone }
         )
             .then(res => {
@@ -58,6 +58,13 @@ const AddForm = ({ list, setList, open, setOpen, edit, setEdit }) => {
             .catch(err => console.log(err.response));
     }
 
+    const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+      };
 
     useEffect(() => {
         if (edit) {

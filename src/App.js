@@ -48,7 +48,7 @@ const solutions = [
 ];
 function App() {
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto bg-gray-100">
       {/* <Header />
       <Body />
       {solutions.map((item) => (
