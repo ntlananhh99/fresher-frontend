@@ -94,7 +94,7 @@ const Form = () => {
               {...register("phone", { required: true, minLength: 10, maxLength: 10 })}
             />
             {errors.phone && errors.phone.type === "required" && <p className="text-red-500 text-xs italic">Value required</p>}
-            {errors.phone && errors.phone.type === 'minLength' && <p className="text-red-500 text-xs italic">PhoneNumber is 10 characters</p>}
+            {errors.phone && errors.phone.type === 'minLength'  && <p className="text-red-500 text-xs italic">PhoneNumber is 10 characters</p>}
             {errors.phone && errors.phone.type === 'maxLength' && <p className="text-red-500 text-xs italic">PhoneNumber is 10 characters</p>}
 
           </div>
@@ -132,15 +132,12 @@ const Form = () => {
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-organe-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit">
             Add
           </button>
         </div>
       </form>
-      <button class="ease-in duration-300">Button A</button>
-      <button class="ease-out duration-300">Button B</button>
-      <button class="ease-in-out duration-300">Button C</button>
     </div>
   );
 };
