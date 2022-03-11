@@ -11,7 +11,7 @@ import {
   ViewGridIcon,
 } from '@heroicons/react/outline';
 import CallAPI from './components/CallAPI';
-import FormUpdate from './components/FormUpdate';
+import Test from './components/Test';
 
 const solutions = [
   {
@@ -57,7 +57,7 @@ function App() {
       ))}
       <Form />
       <CallAPI/>
-     
+     <Test/>
     </div>
   );
 }

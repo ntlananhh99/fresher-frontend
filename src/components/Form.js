@@ -132,12 +132,15 @@ const Form = () => {
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-yellow-600 hover:bg-blue-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit">
             Add
           </button>
         </div>
       </form>
+       <button class="transition duration-150 ease-in-out">Button A</button>
+      <button class="transition duration-300 ease-in-out">Button B</button>
+      <button class="transition duration-700 ease-in-out">Button C</button>
     </div>
   );
 };
