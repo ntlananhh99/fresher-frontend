@@ -11,7 +11,6 @@ import {
   ViewGridIcon,
 } from '@heroicons/react/outline';
 import CallAPI from './components/CallAPI';
-import FormUpdate from './components/FormUpdate';
 
 const solutions = [
   {
