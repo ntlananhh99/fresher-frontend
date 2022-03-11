@@ -138,9 +138,6 @@ const Form = () => {
           </button>
         </div>
       </form>
-       <button class="transition duration-150 ease-in-out">Button A</button>
-      <button class="transition duration-300 ease-in-out">Button B</button>
-      <button class="transition duration-700 ease-in-out">Button C</button>
     </div>
   );
 };
