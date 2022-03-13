@@ -1,79 +1,103 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import FormUpdate from './FormUpdate';
-const domain = "http://localhost:3000/todo"
+import {getAllUser } from '../utils/Api';
+import DeletePopup from './DeletePopup';
 export default function CallAPI() {
-    const [isShowUpdate, setIsShowUpdate] = useState(false);
-    const [userId, setUserId] = useState(0);
-    const [post, setPost] = useState([]);
-    useEffect(() => {
-        axios.get(domain + "/get").then((response) => {
-            setPost(response.data);
-        })
-        .catch(err=>{
-            console.log(err);
-        });
-    });
+  const [userId, setUserId] = useState(0);
+  const [post, setPost] = useState([]);
+  useEffect(() => {
+    getAllUser()
+      .then((response) => {
+        setPost(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
-    //   ---------------------------------------------
-    const onHandDel = async (id) => {
-        axios.delete(domain + `/${id}/delete/`)
-            .then(res => {
-                console.log(res);
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-    const onUpdate = (id) => {
-        setUserId(id);
-        if(id === userId){
-            setIsShowUpdate(!isShowUpdate);
-        }else setIsShowUpdate(true);
-    }
-    if (!post) return null;
-    return (
-        <div>
-            <table class="table-fixed mx-auto w-full">
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>City</th>
-                        <th>Country</th>
-                        <th></th>
-                    </tr>
+  const onUpdate = (id) => {
+    setUserId(id);
+  };
+  if (!post) return null;
+  return (
+    <div>
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full text-center">
+                <thead className="border-b bg-gray-800">
+                  <tr>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      STT
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      Name
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      Email
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      Phone
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      City
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                      Country
+                    </th>
+                    <th scope="col"
+                      className="text-sm font-medium text-white px-6 py-4">
+                    </th>
+                  </tr>
                 </thead>
-
                 <tbody>
-                    {post.map((item, key )=> (
-                        <tr key={item.id}>
-                            <td className='text-center'>{key+1}</td>
-                            <td className='text-center'>{item.firstName} {item.lastName}</td>
-                            <td className='text-center'>{item.email}</td>
-                            <td className='text-center'>{item.phone}</td>
-                            <td className='text-center'>{item.city}</td>
-                            <td className='text-center'>{item.country}</td>
-                            <td className='text-center'>
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-                                 onClick={id => onUpdate(item.id)}
-                                >
-                                    Update
-                                </button>
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-                                    onClick={() => onHandDel(item.id)}>
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
+                  {post.map((item, key) => (
+                    <tr className="bg-white border-b" key={item.id}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {key + 1}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {item.firstName} {item.lastName}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {item.email}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {item.phone}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {item.city}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        {item.country}
+                      </td>
+                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-700 text-yellow-700 font-medium 
+                    text-xs leading-tight uppercase rounded hover:bg-yellow-700 hover:text-white focus:outline-none focus:ring-0 
+                    transition duration-150 ease-in-out mr-4" data-bs-toggle="modal" data-bs-target="#modalUpdateUser"
+                     onClick={(id) => onUpdate(item.id)}>Edit</button>
+                        <button type="button" class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs 
+                    leading-tight uppercase rounded hover:bg-red-700 hover:text-white focus:outline-none focus:ring-0 transition 
+                    duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalDeleteUser"
+                         >Delete</button>
+                       <DeletePopup id={item.id} dataTarget="modalDeleteUser" />
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
-            </table>
-            <FormUpdate isShow={isShowUpdate} userId={userId}/>
-
+              </table>
+            </div>
+          </div>
         </div>
-    )
+      </div>
+      <FormUpdate userId={userId} />
+    </div>
+  );
 }
