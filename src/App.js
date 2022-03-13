@@ -10,6 +10,7 @@ import {
   ShieldCheckIcon,
   ViewGridIcon,
 } from '@heroicons/react/outline';
+import './dist/output.css'
 
 const solutions = [
   {
@@ -54,6 +55,8 @@ function App() {
         <TodoItem key={item.name} dataItem={item} />
       ))}
       <Form />
+      <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+      <button class="btn bg-sky-600 hover:bg-sky-700 rounded-2xl rounded-full">Save changes</button>
     </div>
   );
 }

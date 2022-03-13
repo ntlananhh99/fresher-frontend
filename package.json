@@ -14,8 +14,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:css": "tailwind build src/css/input.css -o src/dist/output.css",
+    "watch:css": "chokidar 'src/css/input.css' -c 'npm run build:css'",
+    "start": "concurrently -n Tailwind,React 'npm run watch:css' 'react-scripts start'",
+    "build": "npm run build:css && react-scripts build",
+    "start_old": "react-scripts start",
+    "build_old": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -40,7 +44,10 @@
   "proxy": "http://localhost:3000",
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^7.0.0",
     "postcss": "^8.4.7",
+    "postcss-import": "^14.0.2",
     "prettier": "2.5.1",
     "tailwindcss": "^3.0.23"
   }
