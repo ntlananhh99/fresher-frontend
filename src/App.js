@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import StyledComponent from "./components/StyledComponent";
 import TodoComponent from "./components/TodoComponent";
 import { useState, useEffect } from "react";
@@ -68,20 +69,15 @@ function App() {
     <Router >
         <Header/>
           <Routes >
-            
-
             <Route exact path='/todocomponent/*' element={
-                  <TodoComponent todos= {todos} deleteEvent={deleteTodo} submitAddForm={createNewTodo} submitEditForm={editTodo} />}>
-                  
+                  <TodoComponent todos= {todos} deleteEvent={deleteTodo} submitAddForm={createNewTodo} submitEditForm={editTodo} />}>    
             </Route>
 
             <Route exact path='/styledcomponent' element={
                   <StyledComponent />}>
             </Route>
-            
-            
           </Routes>
-
+          <Footer />
      </Router>
     </div>
     

@@ -105,7 +105,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <a href={() => false}>
               <span className="sr-only">Workflow</span>
               <img
                 className="h-8 w-auto sm:h-10"
@@ -281,7 +281,7 @@ export default function Header() {
                           </div>
                           <div className="mt-5 text-sm">
                             <a
-                              href="#"
+                              href={() => false}
                               className="font-medium text-indigo-600 hover:text-indigo-500"
                             >
                               {' '}
@@ -299,13 +299,13 @@ export default function Header() {
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <a
-              href="#"
+              href={() => false}
               className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
             >
               Sign in
             </a>
             <a
-              href="#"
+              href={() => false}
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Sign up
@@ -367,14 +367,14 @@ export default function Header() {
             <div className="py-6 px-5 space-y-6">
               <div className="grid grid-cols-2 gap-y-4 gap-x-8">
                 <a
-                  href="#"
+                  href={() => false}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Pricing
                 </a>
 
                 <a
-                  href="#"
+                  href={() => false}
                   className="text-base font-medium text-gray-900 hover:text-gray-700"
                 >
                   Docs
@@ -391,14 +391,14 @@ export default function Header() {
               </div>
               <div>
                 <a
-                  href="#"
+                  href={() => false}
                   className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Sign up
                 </a>
                 <p className="mt-6 text-center text-base font-medium text-gray-500">
                   Existing customer?{' '}
-                  <a href="#" className="text-indigo-600 hover:text-indigo-500">
+                  <a href={() => false} className="text-indigo-600 hover:text-indigo-500">
                     Sign in
                   </a>
                 </p>
