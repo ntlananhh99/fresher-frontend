@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormUpdate from './FormUpdate';
 import { getAllUser } from '../utils/Api';
 import DeletePopup from './DeletePopup';
-import styled from "styled-components";
-
+import {ButtonCallApi} from "./Home.style"
 export default function CallAPI() {
   const [userId, setUserId] = useState(0);
   const [post, setPost] = useState([]);
@@ -21,22 +20,6 @@ export default function CallAPI() {
     setUserId(id);
   };
   if (!post) return null;
-  const Button = styled.button`
-    color: ${props => props.typebutton==="edit" ? "#D2691E" : "#8B0000"};
-    border: 2px solid ${props => props.typebutton==="edit" ? "#D2691E" : "#8B0000"};
-    background-color: white;
-    font-size: ${(props) => (props.size === "small" ? "14px" : "16px")};
-    margin-right:  ${props => props.typebutton==="edit" ? "4px" : ""};
-    line-height: 1rem;
-    padding: 8px 24px;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: width 0.5s ease-in-out;
-    // &:hover {
-    //   background-color: ${props => props.typebutton==="edit" ? "#D2691E" : "#8B0000"};
-    //   color: white;
-    // }
-`;
   return (
     <div>
       <div className="flex flex-col">
@@ -97,18 +80,21 @@ export default function CallAPI() {
                         {item.country}
                       </td>
                       <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        <Button type="button" typebutton="edit" size="small"
+                        <ButtonCallApi type="button" typebutton="edit" size="small"
                         data-bs-toggle="modal" data-bs-target="#modalUpdateUser"
                         onClick={(id) => onUpdate(item.id)}
-                        >Edit</Button>
-                        <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-700 text-yellow-700 font-medium 
+                        >Edit</ButtonCallApi>
+                        <ButtonCallApi type="button" typebutton="delete" size="small"
+                        data-bs-toggle="modal" data-bs-target="#modalDeleteUser"
+                        >Delete</ButtonCallApi>
+                        {/* <button type="button" class="inline-block px-6 py-2 border-2 border-yellow-700 text-yellow-700 font-medium 
                     text-xs leading-tight uppercase rounded hover:bg-yellow-700 hover:text-white focus:outline-none focus:ring-0 
                     transition duration-150 ease-in-out mr-4" data-bs-toggle="modal" data-bs-target="#modalUpdateUser"
                           onClick={(id) => onUpdate(item.id)}>Edit</button>
                         <button type="button" class="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs 
                     leading-tight uppercase rounded hover:bg-red-700 hover:text-white focus:outline-none focus:ring-0 transition 
                     duration-150 ease-in-out" data-bs-toggle="modal" data-bs-target="#modalDeleteUser"
-                        >Delete</button>
+                        >Delete</button> */}
                         <DeletePopup id={item.id} dataTarget="modalDeleteUser" />
                       </td>
                     </tr>
