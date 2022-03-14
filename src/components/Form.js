@@ -106,7 +106,7 @@ const changeCountryId = (id) => {
   }
 
   return (
-    <div className="w-full max-w-md flex mx-auto mb-8">
+    <div className="w-full max-w-md flex mx-auto mt-8">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
         <div className='mb-2 w-full font-bold'>INFORMATION USER</div>
         <div className="flex flex-wrap -mx-3 mb-4">

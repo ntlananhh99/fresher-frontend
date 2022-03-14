@@ -124,7 +124,6 @@ const FormUpdate = ({ isShow, userId }) => {
                     </div>
                     <div className="modal-body relative p-4">
                         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(onSubmit)}>
-                            <div className='mb-2 w-full font-bold'>UPDATE USER</div>
                             <div className="flex flex-wrap -mx-3 mb-4">
                                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="firstName">

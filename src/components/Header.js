@@ -17,39 +17,19 @@ import {
   XIcon,
 } from '@heroicons/react/outline';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import { Link } from "react-router-dom";
+
 
 const solutions = [
   {
-    name: 'Analytics',
-    description:
-      'Get a better understanding of where your traffic is coming from.',
-    href: '#',
+    name: 'User Infomation',
+    href: '/',
     icon: ChartBarIcon,
   },
   {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
+    name: 'Create User',
+    href: '/createuser',
     icon: CursorClickIcon,
-  },
-  {
-    name: 'Security',
-    description: "Your customers' data will be safe and secure.",
-    href: '#',
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: ViewGridIcon,
-  },
-  {
-    name: 'Automations',
-    description:
-      'Build strategic funnels that will drive your customers to convert',
-    href: '#',
-    icon: RefreshIcon,
   },
 ];
 const callsToAction = [
@@ -130,7 +110,7 @@ export default function Header() {
                       'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
                     )}
                   >
-                    <span>Solutions</span>
+                    <span>About User</span>
                     <ChevronDownIcon
                       className={classNames(
                         open ? 'text-gray-600' : 'text-gray-400',
@@ -153,9 +133,8 @@ export default function Header() {
                       <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                         <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                           {solutions.map((item) => (
-                            <a
+                            <Link to={item.href}
                               key={item.name}
-                              href={item.href}
                               className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                             >
                               <item.icon
@@ -166,11 +145,8 @@ export default function Header() {
                                 <p className="text-base font-medium text-gray-900">
                                   {item.name}
                                 </p>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {item.description}
-                                </p>
                               </div>
-                            </a>
+                            </Link>
                           ))}
                         </div>
                         <div className="px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
@@ -351,19 +327,20 @@ export default function Header() {
               <div className="mt-6">
                 <nav className="grid gap-y-8">
                   {solutions.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
-                    >
-                      <item.icon
-                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-3 text-base font-medium text-gray-900">
+                    <Link to={item.href}
+                    key={item.name}
+                    className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                  >
+                    <item.icon
+                      className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      aria-hidden="true"
+                    />
+                    <div className="ml-4">
+                      <p className="text-base font-medium text-gray-900">
                         {item.name}
-                      </span>
-                    </a>
+                      </p>
+                    </div>
+                  </Link>
                   ))}
                 </nav>
               </div>
