@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link} from 'react-router-dom';
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import {
@@ -195,19 +195,15 @@ export default function Header() {
                 </>
               )}
             </Popover>
+            
 
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Pricing
-            </a>
-            <a
-              href="#"
-              className="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Docs
-            </a>
+            <Link to={`/styledcomponent`} className="text-base font-medium text-gray-500 hover:text-gray-900">   
+                Styled Component
+            </Link>      
+
+            <Link to={`/todocomponent/todolist`} className="text-base font-medium text-gray-500 hover:text-gray-900">   
+              Todo
+            </Link>
 
             <Popover className="relative">
               {({ open }) => (
