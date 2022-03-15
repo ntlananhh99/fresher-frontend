@@ -6,7 +6,7 @@ class Blogs extends Component {
     return (
       <div>
         {this.props.data.map((blogItem) => (
-          <Blog blog={blogItem} key={blogItem.id} />
+          <Blog key={blogItem.id} />
         ))}
       </div>
     );
