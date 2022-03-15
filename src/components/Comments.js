@@ -7,7 +7,7 @@ class Comments extends Component {
     return (
       <div>
         {!_.isEmpty(this.props.data) && this.props.data.map((todoItem) => (
-          <Comment todo={todoItem} key={todoItem.id} />
+          <Comment todo={todoItem} key={todoItem.id} ></Comment>
         ))}
       </div>
     );
